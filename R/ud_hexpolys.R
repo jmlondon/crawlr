@@ -38,7 +38,8 @@
 #     fillColor = ~ pal(log(count)),
 #     weight = 1
 #   )
-ud_hexpolys <- function(data_sp, cellsize, leaflet = FALSE, seed = 123) {
+ud_hexpolys <- function(data_sp, cellsize, leaflet = FALSE,
+                        density = TRUE, seed = 123) {
   set.seed(seed)
 
   hex_polys <- spsample(data_sp,
@@ -48,11 +49,18 @@ ud_hexpolys <- function(data_sp, cellsize, leaflet = FALSE, seed = 123) {
 
   pts_poly_count <- GISTools::poly.counts(data_sp, hex_polys)
 
+  if (density) {
+    out_polys <- SpatialPolygonsDataFrame(
+      hex_polys,
+      data.frame(density = pts_poly_count/nrow(data_sp@data))
+    )
+  } else {
   out_polys <- SpatialPolygonsDataFrame(
     hex_polys,
     data.frame(count = pts_poly_count), match.ID = TRUE)
+  }
 
-  if(leaflet) {
+  if (leaflet) {
     out_polys <- spTransform(out_polys, CRS("+init=epsg:4326"))
   }
   return(out_polys)

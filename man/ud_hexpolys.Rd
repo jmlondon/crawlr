@@ -4,7 +4,8 @@
 \alias{ud_hexpolys}
 \title{Create Hexagonal Utilization Distribution Polygons}
 \usage{
-ud_hexpolys(data_sp, cellsize, leaflet = FALSE, seed = 123)
+ud_hexpolys(data_sp, cellsize, leaflet = FALSE, density = TRUE,
+  seed = 123)
 }
 \arguments{
 \item{data_sp}{SpatialPointsDataFrame of regular locations}
