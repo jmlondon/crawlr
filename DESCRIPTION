@@ -1,0 +1,22 @@
+Package: crawlr
+Type: Package
+Title: utilities and visualization functions in support of crawl
+Version: 0.1.0
+Authors@R: person("Josh", "London", email = "josh.london@noaa.gov", role = c("aut", "cre"))
+Date: 2016-08-10
+Description: additional utility functions and visualization helpers all
+    designed to work closely with the crawl package for modeling animal
+    movement.
+Depends:
+    R (>= 3.3.0)
+Imports:
+    crawl,
+    dplyr,
+    sp,
+    GISTools
+Suggests:
+    leaflet
+License: CC0 | file LICENSE
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Encoding: UTF-8
