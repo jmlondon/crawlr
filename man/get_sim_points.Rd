@@ -7,7 +7,9 @@
 get_sim_points(sim_tracks, locType = c("p", "o"))
 }
 \arguments{
-\item{locType}{}
+\item{sim_tracks}{simulated tracks returned from get_sim_tracks()}
+
+\item{locType}{which locTypes to filter}
 }
 \value{
 a SpatialPointsDataFrame containing all points from sim_tracks

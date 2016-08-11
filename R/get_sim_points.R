@@ -1,7 +1,7 @@
 #' SpatialPoints from a list of Simulated Tracks
 #'
-#' @param sim_tracks
-#' @param locType
+#' @param sim_tracks simulated tracks returned from get_sim_tracks()
+#' @param locType which locTypes to filter
 #'
 #' @return a SpatialPointsDataFrame containing all points from sim_tracks
 #' @export
