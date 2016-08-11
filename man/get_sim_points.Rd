@@ -4,10 +4,10 @@
 \alias{get_sim_points}
 \title{SpatialPoints from a list of Simulated Tracks}
 \usage{
-get_sim_points(sim_tracks)
+get_sim_points(sim_tracks, locType = c("p", "o"))
 }
 \arguments{
-\item{sim_tracks}{}
+\item{locType}{}
 }
 \value{
 a SpatialPointsDataFrame containing all points from sim_tracks
