@@ -14,6 +14,6 @@ get_sim_tracks <- function(crw_obj, iter) {
   sim_tracks = list()
   for (i in 1:iter) {
     sim_tracks[[i]] <- crawl::crwPostIS(simObj, fullPost = FALSE)
-    return(sim_tracks)
   }
+  return(sim_tracks)
 }
