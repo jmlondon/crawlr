@@ -4,7 +4,7 @@
 \alias{get_sim_tracks}
 \title{Get All the Simulated Tracks You Want}
 \usage{
-get_sim_tracks(crw_obj, iter)
+get_sim_tracks(crw_obj, iter, pt)
 }
 \arguments{
 \item{crw_obj}{a crwFit object}

@@ -20,7 +20,7 @@ mask is an important parameter and, often, is related to the
 spatial scale of the movement. Higher resolution has a significant cost
 in compute time and memory requirements. So, this function uses a simple
 rule to determine an optimal resolution for this land mask. The highest
-resolution is 100 m per side for any region with a max dimension less
+resolution is 150 m per side for any region with a max dimension less
 than or equal to 25 km. Above a max dimension of 25 km, the resolution
 is determined by dividing the max dimension by 1000 and multiplying by 4
 }

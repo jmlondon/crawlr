@@ -6,9 +6,9 @@
 #' @return a list of length iter containing crwIS objects
 #' @export
 #'
-get_sim_tracks <- function(crw_obj, iter) {
+get_sim_tracks <- function(crw_obj, iter, pt) {
   simObj <- crawl::crwSimulator(crw_obj,
-                                predTime = predTimes,
+                                predTime = pt,
                                 method = "IS",
                                 parIS = 100)
   sim_tracks = list()

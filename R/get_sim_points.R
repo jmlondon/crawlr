@@ -7,11 +7,8 @@
 #' @export
 #'
 get_sim_points <- function(sim_tracks, locType = c('p','o')) {
-  simPoints = lapply(sim_tracks, function(x) data.frame(mu.x = x$alpha.sim[,'mu.x'],
-                                                        mu.y = x$alpha.sim[,'mu.y'],
-                                                        num_time = x$Time,
-                                                        locType = x$locType
-  ))
+  simPoints = lapply(sim_tracks, function(x)
+                     as(x, "data.frame"))
 
   simPoints <- dplyr::bind_rows(simPoints) %>% filter(locType %in% locType)
 
