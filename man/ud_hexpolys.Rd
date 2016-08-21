@@ -5,7 +5,7 @@
 \title{Create Hexagonal Utilization Distribution Polygons}
 \usage{
 ud_hexpolys(data_sp, cellsize, leaflet = FALSE, density = TRUE,
-  seed = 123)
+  seed = 123, cellsize.override = TRUE)
 }
 \arguments{
 \item{data_sp}{SpatialPointsDataFrame of regular locations}
@@ -15,6 +15,8 @@ ud_hexpolys(data_sp, cellsize, leaflet = FALSE, density = TRUE,
 \item{leaflet}{should the output be converted to EPSG:4326 for leaflet}
 
 \item{seed}{for consistency}
+
+\item{cellsize.override}{whether to override cellsize specified value would result in poor performance}
 }
 \value{
 a SpatialPolygonsDataFrame

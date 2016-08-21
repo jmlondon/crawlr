@@ -4,6 +4,7 @@
 #' @param cellsize cellsize parameter passed to spsample
 #' @param leaflet should the output be converted to EPSG:4326 for leaflet
 #' @param seed for consistency
+#' @param cellsize.override whether to override cellsize specified value would result in poor performance
 #'
 #' @return a SpatialPolygonsDataFrame
 #' @export
@@ -39,25 +40,45 @@
 #     weight = 1
 #   )
 ud_hexpolys <- function(data_sp, cellsize, leaflet = FALSE,
-                        density = TRUE, seed = 123) {
+                        density = TRUE, seed = 123,
+                        cellsize.override = TRUE) {
+  bb <- bbox(this_sims_pts)
+  max_dim <- max(bb["mu.x","max"] - bb["mu.x","min"],
+                 bb["mu.y","max"] - bb["mu.y","min"])
+
+  if (max_dim/cellsize > 150) {
+    if (cellsize.override) {
+    cellsize = 1250
+    warning(
+      paste0("cellsize of", cellsize, "will result in poor",
+             "performance. setting to 1250 meters. if you want",
+             "a higher resolution, specify cellsize.override = FALSE.")
+    )
+    }
+  }
+
   set.seed(seed)
 
-  hex_polys <- spsample(data_sp,
+  hex_polys <- sp::spsample(data_sp,
                         cellsize = cellsize,
-                        type = "hexagonal") %>%
-    HexPoints2SpatialPolygons(.)
+                        type = "hexagonal")
+  hex_polys <- sp::HexPoints2SpatialPolygons(hex_polys)
 
-  pts_poly_count <- GISTools::poly.counts(data_sp, hex_polys)
+  hex_over <- over(data_sp,hex_polys)
+
+  count_table <- data.frame(
+    table(factor(hex_over, levels = 1:length(hex_polys@polygons))),
+    row.names = sapply(hex_polys@polygons, function(x) x@ID)
+    )
+  count_table <- count_table[,"Freq", drop = FALSE]
+  colnames(count_table) <- "counts"
+  out_polys <- SpatialPolygonsDataFrame(hex_polys, count_table,
+                                        match.ID = TRUE)
+
+  # pts_poly_count <- GISTools::poly.counts(data_sp, hex_polys)
 
   if (density) {
-    out_polys <- SpatialPolygonsDataFrame(
-      hex_polys,
-      data.frame(density = pts_poly_count/nrow(data_sp@data))
-    )
-  } else {
-  out_polys <- SpatialPolygonsDataFrame(
-    hex_polys,
-    data.frame(count = pts_poly_count), match.ID = TRUE)
+    out_polys$density <- out_polys$counts/nrow(data_sp@data)
   }
 
   if (leaflet) {
