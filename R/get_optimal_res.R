@@ -7,9 +7,11 @@
 #' spatial scale of the movement. Higher resolution has a significant cost
 #' in compute time and memory requirements. So, this function uses a simple
 #' rule to determine an optimal resolution for this land mask. The highest
-#' resolution is 150 m per side for any region with a max dimension less
+#' resolution is 200 m per side for any region with a max dimension less
 #' than or equal to 25 km. Above a max dimension of 25 km, the resolution
-#' is determined by dividing the max dimension by 1000 and multiplying by 4
+#' is determined by dividing the max dimension by 1000 and multiplying by 8.
+#' That said, once the max dimension reaches 150km, the resolution is set to
+#' a fixed value of 1.2km.
 #'
 #' @param pts a SpatialPoints, or SpatialPointsDataFrame
 #'
@@ -22,6 +24,7 @@ get_optimal_res <- function(pts) {
 
   max_len <- max(x_len, y_len)
 
-  res <- ifelse(max_len >= 25000, (max_len/1000) * 4, 150)
+  res <- ifelse(max_len >= 25000, (max_len/1000) * 8, 200)
+  res <- ifelse(max_len >= 150000, 1200, res)
   return(res)
 }
