@@ -42,7 +42,7 @@
 ud_hexpolys <- function(data_sp, cellsize, leaflet = FALSE,
                         density = TRUE, seed = 123,
                         cellsize.override = TRUE) {
-  bb <- bbox(this_sims_pts)
+  bb <- bbox(data_sp)
   max_dim <- max(bb["mu.x","max"] - bb["mu.x","min"],
                  bb["mu.y","max"] - bb["mu.y","min"])
 
