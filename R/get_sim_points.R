@@ -14,6 +14,5 @@ get_sim_points <- function(sim_tracks, locType = c('p','o')) {
     dplyr::filter(locType %in% locType)
 
   sp::coordinates(simPoints) <- ~mu.x+mu.y
-  sp::proj4string(simPoints) <- sp::CRS("+init=epsg:3571")
   return(simPoints)
 }
