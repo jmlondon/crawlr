@@ -4,17 +4,19 @@
 \alias{ud_hexpolys}
 \title{Create Hexagonal Utilization Distribution Polygons}
 \usage{
-ud_hexpolys(data_sp, cellsize, leaflet = FALSE, density = TRUE,
-  seed = 123, cellsize.override = TRUE)
+ud_hexpolys(data_sp, study_area, cellsize, leaflet = FALSE, density = TRUE,
+  cellsize.override = TRUE)
 }
 \arguments{
 \item{data_sp}{SpatialPointsDataFrame of regular locations}
+
+\item{study_area}{bounding box for the study area (optional)}
 
 \item{cellsize}{cellsize parameter passed to spsample}
 
 \item{leaflet}{should the output be converted to EPSG:4326 for leaflet}
 
-\item{seed}{for consistency}
+\item{density}{calculate density per hexgrid in addition to counts}
 
 \item{cellsize.override}{whether to override cellsize specified value would result in poor performance}
 }

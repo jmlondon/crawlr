@@ -1,7 +1,9 @@
 #' Create Hexagonal Utilization Distribution Polygons
 #'
 #' @param data_sp SpatialPointsDataFrame of regular locations
+#' @param study_area bounding box for the study area (optional)
 #' @param cellsize cellsize parameter passed to spsample
+#' @param density calculate density per hexgrid in addition to counts
 #' @param leaflet should the output be converted to EPSG:4326 for leaflet
 #' @param cellsize.override whether to override cellsize specified value would result in poor performance
 #'
