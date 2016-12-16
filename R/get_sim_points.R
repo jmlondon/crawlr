@@ -7,8 +7,13 @@
 #' @export
 #'
 get_sim_points <- function(sim_tracks, locType = c('p','o')) {
+  if (inherits(sim_tracks[[1]],"crwIS")) {
   simPoints = lapply(sim_tracks, function(x)
                      as(x, "data.frame"))
+  } else if (inherits(sim_tracks[[1]],"matrix")) {
+    simPoints = lapply(sim_tracks, function(x)
+      base::as.data.frame(x))
+  }
 
   simPoints <- dplyr::bind_rows(simPoints) %>%
     dplyr::filter(locType %in% locType)
