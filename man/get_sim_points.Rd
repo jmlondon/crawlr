@@ -4,12 +4,14 @@
 \alias{get_sim_points}
 \title{SpatialPoints from a list of Simulated Tracks}
 \usage{
-get_sim_points(sim_tracks, locType = c("p", "o"))
+get_sim_points(sim_tracks, locType = c("p", "o"), crs)
 }
 \arguments{
 \item{sim_tracks}{simulated tracks returned from get_sim_tracks()}
 
 \item{locType}{which locTypes to filter}
+
+\item{crs}{a valid CRS object that will be associated with returned SPDF}
 }
 \value{
 a SpatialPointsDataFrame containing all points from sim_tracks
