@@ -24,7 +24,7 @@ get_sim_points <- function(sim_tracks, locType = c('p','o'), crs) {
 
   sp::coordinates(simPoints) <- ~mu.x+mu.y
   if (!missing(crs)) {
-    sp::proj4string(simPoints <- crs)
+    sp::proj4string(simPoints) <- crs
   }
   return(simPoints)
 }
