@@ -62,16 +62,16 @@ setAs(from = "crwIS", to = "SpatialLines",
 #' @param crwISobj an object of class \code{"crwIS"},
 #' @rdname coerce-crwIS-methods
 #' @export
-as.data.frame <- function(crwISobj) {
+as.data.frame.crwIS <- function(crwISobj) {
   df <- data.frame(mu.x = crwISobj$alpha.sim[,'mu.x'],
                    mu.y = crwISobj$alpha.sim[,'mu.y'],
                    num_time = crwISobj$Time,
                    locType = crwISobj$locType
   )
-  return(df)
+  df
 }
 
 #' @name coerce-crwIS
 #' @rdname coerce-crwIS-methods
 setAs(from = "crwIS", to = "data.frame",
-      def = function(from) as.data.frame(from))
+      def = function(from) as.data.frame.crwIS(from))

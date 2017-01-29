@@ -12,7 +12,9 @@ Depends:
 Imports:
     crawl,
     dplyr,
+    magrittr,
     sp,
+    sf,
     GISTools
 Suggests:
     leaflet

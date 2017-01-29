@@ -12,7 +12,7 @@ get_sim_points <- function(sim_tracks, locType = c('p','o'), crs) {
   sim_tracks <- lapply(sim_tracks,
                       function(x) {
                         if (inherits(x,"crwIS")) {
-                          crawlr::as.data.frame(x)
+                          crawlr:::as.data.frame.crwIS(x)
                           } else if (inherits(x,"data.frame")) {
                             x
                           }
@@ -26,5 +26,5 @@ get_sim_points <- function(sim_tracks, locType = c('p','o'), crs) {
   if (!missing(crs)) {
     sp::proj4string(simPoints) <- crs
   }
-  return(simPoints)
+  simPoints
 }

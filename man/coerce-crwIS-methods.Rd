@@ -3,7 +3,7 @@
 \name{coerce-crwIS-methods}
 \alias{as.SL}
 \alias{as.SPDF}
-\alias{as.data.frame}
+\alias{as.data.frame.crwIS}
 \alias{coerce-crwIS}
 \alias{coerce-crwIS-methods}
 \alias{crwIS-class}
@@ -13,7 +13,7 @@ as.SPDF(crwISobj)
 
 as.SL(crwISobj)
 
-as.data.frame(crwISobj)
+\method{as.data.frame}{crwIS}(crwISobj)
 }
 \arguments{
 \item{crwISobj}{an object of class \code{"crwIS"},}
