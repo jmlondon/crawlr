@@ -43,7 +43,9 @@
 ud_hexpolys <- function(data_sp, study_area, cellsize, leaflet = FALSE,
                         density = TRUE,
                         cellsize.override = TRUE) {
-
+  if (inherits(data_sp,"sf")) {
+    data_sp <- as(data_sp,"Spatial")
+  }
   if (missing(study_area)) {
     bb <- bbox(data_sp)
     max_dim <- max(bb["mu.x","max"] - bb["mu.x","min"],
